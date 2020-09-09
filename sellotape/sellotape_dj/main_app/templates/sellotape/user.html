@@ -1,5 +1,21 @@
 {% extends 'sellotape/base.html' %}
 
+{% load static %}
+
+{% block customlinks %}
+<link rel="stylesheet" type="text/css" href="{% static 'sellotape/user.css' %}">
+{% endblock %}
+
 {% block content %}
-It's {{ username }} page.
+<div class="header">
+    <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+    {% if live_link %}
+        <span class="red-dot"></span>
+    {% endif %}
+</div>
+
+{% if live_link %}
+    <div>{{ profile.first_name}} is live now at {{ live_link }}</div>
+{% endif %}
+
 {% endblock %}

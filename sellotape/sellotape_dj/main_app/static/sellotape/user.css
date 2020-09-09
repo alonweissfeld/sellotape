@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    margin-right: 20px;
+}
+
+.red-dot {
+    height: 12px;
+    width: 12px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
