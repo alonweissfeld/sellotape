@@ -1,21 +1,15 @@
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 
 def index(request):
     return render(request, 'sellotape/index.html')
 
 def user(request, username):
-    # Get the query set profile for the passed username
-    qs = User.objects.filter(username=username)
-    if not qs.exists():
-        raise Http404
-
-    profile = qs.first()
+    # Get the profile for the passed username or raise 404 if not found.
+    profile = get_object_or_404(User, username=username)
+    
     context = {
-        'username': username,
-        'first_name': profile.first_name,
-        'last_name': profile.last_name,
-        'email': profile.email
+        'profile': profile,
     }
     return render(request, 'sellotape/user.html', context)
